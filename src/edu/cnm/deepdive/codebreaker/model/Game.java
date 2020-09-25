@@ -9,6 +9,10 @@ import java.util.Random;
 public class Game {
 
   private static final String BAD_GUESS_PATTERN_FORMAT = "^.*[^%s].*$";
+  private static final String ILLEGAL_CHARACTER_MESSAGE =
+      "Guess includes invalid characters: required=%s; provided=%s.";
+  private static final String IlLEGAL_LENGTH_MESSAGE =
+      "Invalid guess length: required=%d; provided=%d.";
 
   private final Code code;
   private final List<Guess> guesses;
@@ -42,13 +46,16 @@ public class Game {
 
   public Guess guess(String text) {
     if (text.length() != length) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(String.format(
+          IlLEGAL_LENGTH_MESSAGE, length, text.length()));
     }
     if (text.matches(badGuessPattern)) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(String.format(
+          ILLEGAL_CHARACTER_MESSAGE, pool, text));
     }
     Guess guess = code.new Guess(text);
     guesses.add(guess);
     return guess;
   }
+
 }
