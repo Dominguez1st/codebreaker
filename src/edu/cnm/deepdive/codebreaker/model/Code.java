@@ -21,8 +21,8 @@ public class Code {
   private final char[] secret;
 
   /**
-   * Generates a code using the length to set how long it is, the pool to determine what
-   * characters to use and rng to randomly set the code.
+   * Initializes this instance by generating a random {@link String}, of length {@code length} with
+   * characters taken from {@code pool}. A source of randomness must be provided in {@code rng}.
    *
    * @param pool Characters are available
    * @param length Number of how long the code is.
